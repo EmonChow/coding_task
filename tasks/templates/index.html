@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <div class="container pt-4">
+        <div class="row mx-auto">
+            <div class="col">
+                <div class="border">
+                    {% if todo|length == 0 %}
+                    <div class="text-center p-4">
+                        <h1 class="alert alert-success">NO TASK AVAILABLE!</h1>
+                    </div>
+                    {%else%}
+                    <table class="table table-striped text-center">
+                        <thead>
+                            <tr>
+                                <th>List</th>
+                                <th>Date</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for e in todo %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ e.date }}</td>
+                                <td><a href="/description/{{ e.id }}" class="btn">{{ e.title }}</a></td>
+                                <td>{{ e.description }}</td>
+                                <td>
+                                    {% if e.priority == '1' %}
+                                    <a class="btn btn-danger p-2 rounded-circle" title="Completed">HIGH</a>
+                                    {% elif e.priority == '2' %}
+                                    <a class="btn btn-warning p-2 rounded-circle" title="Pending">MEDIUM</a>
+                                    {% else %}
+                                    <a class="btn btn-success p-2 rounded-circle" title="Pending">LOW</a>
+                                    {%endif%}
+                                </td>
+                                <td>
+                                    {% if e.status == 'C'%}
+                                    <a class="btn btn-success p-1 rounded-circle" title="Completed">✔️</a>
+                                    {%else%}
+                                    <a class="btn btn-warning p-1 rounded-circle" title="Pending">🕓</a>
+                                    {%endif%}
+                                </td>
+                                <td><a href="/delete-task/{{ e.id }}" class="btn-danger" title="Delete">❌</a>
+                                    {%if e.status == 'P'%}
+                                    <a href="/change-task/{{ e.id }}/C" class="btn-success" title="Completed">✔️</a>
+                                    {% else %}
+                                    <a href="/change-task/{{ e.id }}/P" class="btn-success" title="Pending">🕓</a>
+                                    {%endif%}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {%endif%}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

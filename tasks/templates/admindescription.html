@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <div class="container pt-4">
+        <div class="row mx-auto">
+            <div class="col">
+                <div class="border">
+                    <table class="table table-striped text-center">
+                        <thead>
+                            <tr>
+                                <div class="p-4" style="font-size: 30px; font-weight: bold;">
+                                    {{todo.title}}
+                                </div>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Creation Time:</td>
+                                <td>{{ todo.date }}</td>
+                            </tr>
+                            <tr>
+                                <td>Images</td>
+                                <td>
+                                    {% for e in images %}
+                                    <div class="btn btn-outline-primary">
+                                        <img src="{{ e.images.url }}" style="height: 30%; width: 30%;">
+                                        <a title="Delete" href="/admin-edit/i/{{e.id}}/{{todo.id}}">❌</a>
+                                    </div>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td>{{ todo.description }}</td>
+                            </tr>
+                            <tr>
+                                <td>Priority</td>
+                                <td>
+                                    {% if todo.priority == '1' %}
+                                    <a class="btn btn-danger p-2 rounded-circle" href="/admin-edit/p/1/{{todo.id}}"
+                                        title="Completed">HIGH</a>
+                                    {% elif todo.priority == '2' %}
+                                    <a class="btn btn-warning p-2 rounded-circle" href="/admin-edit/p/2/{{todo.id}}"
+                                        title="Pending">MEDIUM</a>
+                                    {% else %}
+                                    <a class="btn btn-success p-2 rounded-circle" href="/admin-edit/p/3/{{todo.id}}"
+                                        title="Pending">LOW</a>
+                                    {%endif%}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container pt-4">
+    <div class="col-lg-5 shadow p-0 mx-auto">
+        <div class="alert alert-success">
+            <h2 style="color: #007bff; font-weight: bold;">Log In to Your Account</h2>
+        </div>
+        <div class="p-4">
+            <form action="/login" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <hr>
+                <input type="submit" class="btn btn-primary" style="background-color: #007bff;" value="Log In">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

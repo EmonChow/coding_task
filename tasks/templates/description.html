@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <div class="container pt-4">
+        <div class="row mx-auto">
+            <div class="col">
+                <div class="border">
+                    <table class="table table-striped text-center">
+                        <thead>
+                            <tr>
+                                <div class="p-4" style="font-size: 30px; font-weight: bold;">
+                                    {{todo.title}}
+                                </div>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Creation Time:</td>
+                                <td>{{ todo.date }}</td>
+                            </tr>
+                            <tr>
+                                <td>Images</td>
+                                <td>
+                                    {% for e in images %}
+                                    <img src="{{ e.images.url }}" style="height: 20%; width: 20%;">
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td>{{ todo.description }}</td>
+                            </tr>
+                            <tr>
+                                <td>Priority</td>
+                                <td>
+                                    {% if todo.priority == '1' %}
+                                    <a class="btn btn-danger p-2 rounded-circle" title="Completed">HIGH</a>
+                                    {% elif todo.priority == '2' %}
+                                    <a class="btn btn-warning p-2 rounded-circle" title="Pending">MEDIUM</a>
+                                    {% else %}
+                                    <a class="btn btn-success p-2 rounded-circle" title="Pending">LOW</a>
+                                    {%endif%}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

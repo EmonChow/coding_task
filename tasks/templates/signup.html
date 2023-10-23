@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-lg-5 shadow p-0 mx-auto mt-4">
+    <div class="alert alert-info">
+        <h2 style="color: #2c3e50; font-weight: bold;">Sign Up</h2>
+    </div>
+    <div class="p-4" style="background-color: #ecf0f1; border-radius: 5px;">
+        <form action="/signup" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <hr>
+            <input type="submit" class="btn btn-primary" style="background-color: #3498db;" value="Create Account">
+        </form>
+    </div>
+</div>
+{% endblock %}
